@@ -44,10 +44,7 @@
       <div aria-hidden="true" class="h-[1px] bg-slate-700"></div>
       <div class="flex items-center justify-between p-2">
         <p class="text-sm text-slate-500">
-          <p class=" text-cyan-600 transition hover:text-cyan-500">
-            Nelson Mbau
-          </p>
-          © {new Date().getFullYear()}
+          Nelson Mbau © {new Date().getFullYear()}
         </p>
       </div>
     </div>
