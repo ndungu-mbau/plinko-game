@@ -14,7 +14,7 @@
   import { flyAndScale } from '$lib/utils/transitions';
   import { Popover, Tooltip } from 'bits-ui';
   import ChartLine from 'phosphor-svelte/lib/ChartLine';
-  import GearSix from 'phosphor-svelte/lib/GearSix';
+  // import GearSix from 'phosphor-svelte/lib/GearSix';
   import Infinity from 'phosphor-svelte/lib/Infinity';
   import Question from 'phosphor-svelte/lib/Question';
   import type { FormEventHandler } from 'svelte/elements';
@@ -45,7 +45,7 @@
     $plinkoEngine === null || isBetAmountNegative || isBetExceedBalance || isAutoBetInputNegative,
   );
 
-  let hasOutstandingBalls = $derived(Object.keys($betAmountOfExistingBalls).length > 0);
+  // let hasOutstandingBalls = $derived(Object.keys($betAmountOfExistingBalls).length > 0);
 
   const handleBetAmountFocusOut: FormEventHandler<HTMLInputElement> = (e) => {
     const parsedValue = parseFloat(e.currentTarget.value.trim());
@@ -112,12 +112,12 @@
     { value: BetMode.MANUAL, label: 'Manual' },
     { value: BetMode.AUTO, label: 'Auto' },
   ];
-  const riskLevels = [
-    { value: RiskLevel.LOW, label: 'Low' },
-    { value: RiskLevel.MEDIUM, label: 'Medium' },
-    { value: RiskLevel.HIGH, label: 'High' },
-  ];
-  const rowCounts = rowCountOptions.map((value) => ({ value, label: value.toString() }));
+  // const riskLevels = [
+  //   { value: RiskLevel.LOW, label: 'Low' },
+  //   { value: RiskLevel.MEDIUM, label: 'Medium' },
+  //   { value: RiskLevel.HIGH, label: 'High' },
+  // ];
+  // const rowCounts = rowCountOptions.map((value) => ({ value, label: value.toString() }));
 </script>
 
 <div class="flex flex-col gap-5 bg-slate-700 p-3 lg:max-w-80">
@@ -150,30 +150,30 @@
           step="0.01"
           inputmode="decimal"
           class={twMerge(
-            'w-full rounded-l-md border-2 border-slate-600 bg-slate-900 py-2 pl-7 pr-2 text-sm text-white transition-colors hover:cursor-pointer focus:border-slate-500 focus:outline-none disabled:cursor-not-allowed  disabled:opacity-50 hover:[&:not(:disabled)]:border-slate-500',
+            'w-full rounded-l-md border-2 border-slate-600 bg-slate-900 py-2 pl-12 pr-2 text-sm text-white transition-colors hover:cursor-pointer focus:border-slate-500 focus:outline-none disabled:cursor-not-allowed  disabled:opacity-50 hover:[&:not(:disabled)]:border-slate-500',
             (isBetAmountNegative || isBetExceedBalance) &&
               'border-red-500 focus:border-red-400 hover:[&:not(:disabled)]:border-red-400',
           )}
         />
-        <div class="absolute left-3 top-2 select-none text-slate-500" aria-hidden="true">$</div>
+        <div class="absolute left-3 top-2 select-none text-slate-500" aria-hidden="true">Ksh</div>
       </div>
       <button
         disabled={autoBetInterval !== null}
         onclick={() => {
-          $betAmount = parseFloat(($betAmount / 2).toFixed(2));
+          $betAmount = $betAmount - 5;
         }}
         class="touch-manipulation bg-slate-600 px-4 font-bold diagonal-fractions text-white transition-colors disabled:cursor-not-allowed disabled:opacity-50 hover:[&:not(:disabled)]:bg-slate-500 active:[&:not(:disabled)]:bg-slate-400"
       >
-        1/2
+        -5
       </button>
       <button
         disabled={autoBetInterval !== null}
         onclick={() => {
-          $betAmount = parseFloat(($betAmount * 2).toFixed(2));
+          $betAmount = $betAmount + 5;
         }}
         class="relative touch-manipulation rounded-r-md bg-slate-600 px-4 text-sm font-bold text-white transition-colors after:absolute after:left-0 after:inline-block after:h-1/2 after:w-[2px] after:bg-slate-800 after:content-[''] disabled:cursor-not-allowed disabled:opacity-50 hover:[&:not(:disabled)]:bg-slate-500 active:[&:not(:disabled)]:bg-slate-400"
       >
-        2×
+        +5
       </button>
     </div>
     {#if isBetAmountNegative}
@@ -185,7 +185,7 @@
     {/if}
   </div>
 
-  <div>
+  <!-- <div>
     <label for="riskLevel" class="text-sm font-medium text-slate-300">Risk</label>
     <Select
       id="riskLevel"
@@ -203,7 +203,7 @@
       items={rowCounts}
       disabled={hasOutstandingBalls || autoBetInterval !== null}
     />
-  </div>
+  </div> -->
 
   {#if betMode === BetMode.AUTO}
     <div>
@@ -266,7 +266,7 @@
   <div class="mt-auto pt-5">
     <div class="flex items-center gap-4 border-t border-slate-600 pt-3">
       <!-- Settings Button -->
-      <Tooltip.Root openDelay={0} closeOnPointerDown={false}>
+      <!-- <Tooltip.Root openDelay={0} closeOnPointerDown={false}>
         <Tooltip.Trigger asChild let:builder>
           <button
             use:builder.action
@@ -288,7 +288,7 @@
           <Tooltip.Arrow />
           <p>{$isGameSettingsOpen ? 'Close' : 'Open'} Game Settings</p>
         </Tooltip.Content>
-      </Tooltip.Root>
+      </Tooltip.Root> -->
 
       <!-- Live Stats Button -->
       <Tooltip.Root openDelay={0} closeOnPointerDown={false}>

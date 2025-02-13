@@ -53,6 +53,6 @@
 
 <style>
   :global(body) {
-    @apply bg-gray-800;
+    @apply bg-neutral-800;
   }
 </style>
