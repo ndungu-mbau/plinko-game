@@ -40,7 +40,7 @@
             onclick={() => ($balance += amount)}
             class="touch-manipulation rounded-md bg-green-500 px-3 py-2 text-sm font-semibold text-gray-900 transition-colors hover:bg-green-400 active:bg-green-600 disabled:bg-neutral-600 disabled:text-neutral-400"
           >
-            +${amount}
+            +Ksh{amount}
           </button>
         {/each}
       </div>
